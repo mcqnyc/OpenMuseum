@@ -319,7 +319,7 @@ export function facebookAuthReq(){
     axios.get('api/auth/facebook')
       .then(response => {
         console.log('response.status === ', response.status);
-        console.log('passed to FB >>> > > ', response.data);
+        console.log('passed to FB >>>>> ', response.data);
         // dispatch({ type: 'AUTH_USER' });
         // localStorage.setItem('token', response.data.token);
         // browserHistory.push('/');

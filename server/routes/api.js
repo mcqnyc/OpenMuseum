@@ -25,7 +25,7 @@ router.put("/art", ctrlArt.editArt)
 router.put("/art/editLikes", ctrlArt.editLikes)
 
 
-router.get('/auth/facebook', passport.authenticate('facebook'));
+router.get('/auth/facebook', /*passport.authenticate('facebook')*/ function(){console.log('this is auth facebook')});
 router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/signin' }),
   function(req, res) {
     // Successful authentication, redirect home.
