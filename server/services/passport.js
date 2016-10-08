@@ -69,6 +69,15 @@ const facebookLogin = new FacebookStrategy(facebookOptions,
 });
 
 
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+
+
 // tell passport to use these strategies
 passport.use(jwtLogin);
 passport.use(localLogin);

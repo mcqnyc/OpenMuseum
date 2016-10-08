@@ -251,6 +251,21 @@ export function updateLocFromImage(loc) {
   }    
 }
 
+////// ACTIONS FOR SUBMIT/EDIT ART MODAL
+
+
+export function submitArt(props){ 
+// want to get object props off here
+  const request = axios.post( console.log('in submitArt for modal edit fn')/* connect to server/db here, then pass props with it, like so -->  */, props);
+
+  return {
+    type: CREATE_POST,
+    payload: request
+  };
+}
+
+
+
 ////// ACTIONS FOR AUTH
 
 export function signinUser({ email, password }) {
@@ -316,16 +331,14 @@ export function facebookAuthReq(){
   console.log('in httpGet');
 
   return function(dispatch) {
-    axios.get('api/auth/facebook')
+    axios.post('api/auth/facebook')
       .then(response => {
         console.log('response.status === ', response.status);
         console.log('passed to FB >>>>> ', response.data);
-        // dispatch({ type: 'AUTH_USER' });
-        // localStorage.setItem('token', response.data.token);
-        // browserHistory.push('/');
+
       })
       .catch(() => {
-        dispatch(authError('Bad signin info'));
+        dispatch(authError('Bad signin info from FB auth'));
       });
   }
 };

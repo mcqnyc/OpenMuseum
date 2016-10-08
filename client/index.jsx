@@ -19,7 +19,7 @@ import RequireAuth from './components/auth/requireAuth';
 import ImageSlide from './components/imageSlide';
 
 // import react router dependencies
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory, Redirect } from 'react-router';
 
 import { Provider } from 'react-redux';
 import store, { history } from './store';
@@ -37,7 +37,7 @@ const router = (
         <Route path="postsfromsearch" component={PostListsFromSearch} />
         <Route path="postsfromtheme" component={PostListsFromTheme} />
         <Route path="posts/:id" component={PostDetail} />
-        <Route path="imageSlide" component={ImageSlide} />           
+        <Route path="imageSlide" component={ImageSlide} />
       </Route>
     </Router>
   </Provider>

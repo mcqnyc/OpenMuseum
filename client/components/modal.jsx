@@ -55,7 +55,7 @@ export default class myModal extends Component {
 
    handleNameChange(e) {
     this.setState({ newName: e.target.value});
-    console.log("mah state: ", this.state);
+    console.log("name of art mah state: ", this.state);
   }
 
   handleDescriptionChange(e) {

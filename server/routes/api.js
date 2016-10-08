@@ -10,9 +10,16 @@ var passport = require('../../node_modules/passport');
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false});
 
-// router.get('/', requireAuth, function(req, res) {
-//   res.send({hi: 'there'});
-// });
+router.use(passport.initialize());
+router.use(passport.session());
+
+router.post('/auth/facebook', passport.authenticate('facebook'));
+router.post('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/signin' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+});
+
 router.post("/art", ctrlArt.insertArt);
 router.post("/findArt", ctrlArt.findArt);
 router.post("/comments", ctrlArt.insertComment);
@@ -25,12 +32,6 @@ router.put("/art", ctrlArt.editArt)
 router.put("/art/editLikes", ctrlArt.editLikes)
 
 
-router.get('/auth/facebook', /*passport.authenticate('facebook')*/ function(){console.log('this is auth facebook')});
-router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/signin' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-});
 
 
 module.exports = router;
