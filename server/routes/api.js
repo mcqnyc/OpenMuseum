@@ -1,5 +1,5 @@
 const router = require("express").Router();
-
+var express = require('express');
 const ctrlArt = require('../controllers/artController.js');
 
 var ctrlAuth = require('../controllers/authenticationController.js');
@@ -10,11 +10,14 @@ var passport = require('../../node_modules/passport');
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false});
 
+// Initialize Passport and restore authentication state, if any, from the
+// session.
 router.use(passport.initialize());
 router.use(passport.session());
 
-router.post('/auth/facebook', passport.authenticate('facebook'));
-router.post('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/signin' }),
+// Define routes for Facebook authentication
+router.post('/login/facebook', passport.authenticate('facebook'));
+router.post('/login/facebook/return', passport.authenticate('facebook', { failureRedirect: '/signin' }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/');

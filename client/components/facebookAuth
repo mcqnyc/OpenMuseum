@@ -1,9 +1,0 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
-
-export default class FacebookAuth extends Component {  
-  render() {
-    return <Link className="nav-link" to="/auth/facebook">Login with Facebook</Link>;
-  }
-}
-

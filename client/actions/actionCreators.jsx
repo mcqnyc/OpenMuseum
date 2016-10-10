@@ -328,17 +328,25 @@ export function editLikes(object){
 }
 
 export function facebookAuthReq(){
-  console.log('in httpGet');
+  console.log('in httpPost');
 
+
+  
   return function(dispatch) {
-    axios.post('api/auth/facebook')
-      .then(response => {
-        console.log('response.status === ', response.status);
-        console.log('passed to FB >>>>> ', response.data);
 
-      })
-      .catch(() => {
-        dispatch(authError('Bad signin info from FB auth'));
-      });
+    axios({
+      method: 'post',
+      dataType: 'text',
+      url: 'api/login/facebook'
+    })
+    .then(response => {
+      console.log('response.status === ', response.status);
+      console.log('passed to FB >>>>> ', response.data);
+
+    })
+    .catch(() => {
+      dispatch(authError('Bad signin info from FB login'));
+    });
+
   }
 };
